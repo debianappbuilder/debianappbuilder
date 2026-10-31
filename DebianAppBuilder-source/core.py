@@ -376,16 +376,17 @@ def choose_and_copy(destination_dir):
     """
     choice = messagebox.askyesno(
         "Select Type", 
-        "Click YES to select a File (.py, .c)\nClick NO to select a Folder/Directory"
+        "Click YES to select a File (.py, .c, .png)\nClick NO to select a Folder/Directory"
     )
 
     if choice:  # File path
         file_path = filedialog.askopenfilename(
             title="Select Python or C source file",
             filetypes=[
-                ("Supported files", "*.py *.c"),
+                ("Supported files", "*.py *.c *.png"),
                 ("Python files", "*.py"),
                 ("C source files", "*.c"),
+                ("PNG files","*.png"),
                 ("All files", "*.*"),
             ],
         )
@@ -1185,7 +1186,7 @@ def create_instructions_file(package_root, package_name, desktop_name="", versio
     with generic usage instructions above it.
     Returns the created file path or None on failure.
     """
-    attribution = "This app/package is built using Debian App Builder by tuffgit21 | Official Debian App Builder site: https://tuffgit21.github.io/Debian-App-Builder/ | projects website: https://tuffgit21.github.io/"
+    attribution = "This app/package is built using Debian App Builder by tuffgit21 | Official Debian App Builder site: https://debianappbuilder.github.io/ | projects website: https://tuffgit21.github.io/"
     try:
         pkg = str(package_name).strip() or "app"
         ver = str(version).strip() or "1.0"
@@ -1261,7 +1262,7 @@ def create_instructions_file(package_root, package_name, desktop_name="", versio
                 except OSError:
                     pass
             except OSError:
-                continue
+                continue 
 
         return dest1
     except Exception as e:
